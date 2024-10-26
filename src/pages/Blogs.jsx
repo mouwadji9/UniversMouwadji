@@ -1,29 +1,46 @@
-// Blogs.js
-import React, { useState } from "react";
-import { categories, publications, people } from "../data/Blogsdata";
+import React, { useState, useEffect } from "react";
+import { categories, publications } from "../data/Blogsdata";
+import {
+  FaBook,
+  FaBrain,
+  FaUserGraduate,
+  FaMosque,
+  FaCode,
+  FaGlobe,
+  FaStar,
+} from "react-icons/fa"; // Icônes des catégories
+import "./Blogs.css";
 
 const Blogs = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [activePublication, setActivePublication] = useState(null);
 
-  // Filtre les publications par catégorie sélectionnée
+  useEffect(() => {
+    // Définit la publication par défaut lors du changement de catégorie
+    const defaultPublication = publications.find(
+      (pub) => pub.category === selectedCategory.name
+    );
+    setActivePublication(defaultPublication);
+  }, [selectedCategory]);
+
   const filteredPublications = publications.filter(
     (pub) => pub.category === selectedCategory.name
   );
 
   return (
     <div className="container mt-4">
-      <h1 className="border border-success border-3 rounded p-2 text-center mb-3">
+      <h1 className="border border-success border-3 rounded p-3 text-center mb-4 bg-light shadow-sm">
         Nos Blogs Thématiques
       </h1>
 
       {/* Navbar des catégories */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light rounded mb-4">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light rounded mb-4 shadow-sm">
         <div className="navbar-nav mx-auto justify-content-center">
           {categories.map((category) => (
             <a
               key={category.id}
               href="#"
-              className={`nav-link ${
+              className={`nav-link custom-nav-link me-2 ${
                 selectedCategory.id === category.id ? "active" : ""
               }`}
               onClick={(e) => {
@@ -31,7 +48,7 @@ const Blogs = () => {
                 setSelectedCategory(category);
               }}
             >
-              {category.name}
+              {categoryIcons[category.name]} {category.name}
             </a>
           ))}
         </div>
@@ -40,31 +57,16 @@ const Blogs = () => {
       {/* Contenu des publications */}
       <div className="row">
         {/* Colonne des titres */}
-        <div className="col-md-4">
-          <h3 className="border border-success border-3 rounded p-2 text-center mb-3">
-            {selectedCategory.name}
-          </h3>
-          <ul
-            className="list-group"
-            style={{
-              maxHeight: "300px", // Limite la hauteur à 300px
-              overflowY: "auto", // Active le défilement vertical si nécessaire
-              padding: "0.5rem",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              backgroundColor: "#f9f9f9",
-            }}
-          >
+        <div className="col-md-4 shadow-sm rounded p-3 border border-primary bg-light">
+          <h3 className="text-center ">{selectedCategory.name}</h3>
+          <ul className="list-group list-group-flush mt-3">
             {filteredPublications.map((pub) => (
               <li
                 key={pub.id}
-                className="list-group-item"
-                onClick={() =>
-                  setSelectedCategory({
-                    ...selectedCategory,
-                    activePublication: pub,
-                  })
-                }
+                className={`list-group-item ${
+                  activePublication?.id === pub.id ? "active" : ""
+                }`}
+                onClick={() => setActivePublication(pub)}
                 style={{ cursor: "pointer" }}
               >
                 {pub.title}
@@ -74,47 +76,35 @@ const Blogs = () => {
         </div>
 
         {/* Colonne des détails */}
-        <div className="col-md-8">
-          {selectedCategory.activePublication ? (
-            <div className="border p-3 rounded">
-              <h4>{selectedCategory.activePublication.title}</h4>
-              <p>{selectedCategory.activePublication.excerpt}</p>
+        <div className="col-md-8 shadow-sm rounded p-3 border border-dark bg-light">
+          {activePublication ? (
+            <div>
+              <h4 className="text-dark">{activePublication.title}</h4>
+              <p className="text-muted">{activePublication.excerpt}</p>
               <ul>
-                {selectedCategory.activePublication.contentDetails.map(
-                  (detail, idx) => (
-                    <li key={idx}>
-                      <h5>{detail.title}</h5>
-                      {/* Conteneur défilant pour les sections longues */}
-                      <div
-                        style={{
-                          maxHeight: "300px", // Limite la hauteur à 300px
-                          overflowY: "auto", // Active le défilement vertical si nécessaire
-                          padding: "0.5rem",
-                          border: "1px solid #ddd",
-                          borderRadius: "4px",
-                          backgroundColor: "#f9f9f9",
-                        }}
-                      >
-                        {detail.section.split("\n").map((line, i) => (
-                          <React.Fragment key={i}>
-                            {line}
-                            <br />
-                          </React.Fragment>
-                        ))}
-                      </div>
-                      <div className="mt-3">
-                        {detail.photos.map((photo, i) => (
-                          <img
-                            key={i}
-                            src={photo}
-                            alt=""
-                            style={{ width: "100px", marginRight: "10px" }}
-                          />
-                        ))}
-                      </div>
-                    </li>
-                  )
-                )}
+                {activePublication.contentDetails.map((detail, idx) => (
+                  <li key={idx}>
+                    <h5>{detail.title}</h5>
+                    <div className="content-section">
+                      {detail.section.split("\n").map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </div>
+                    <div className="mt-3">
+                      {detail.photos.map((photo, i) => (
+                        <img
+                          key={i}
+                          src={photo}
+                          alt="illustration"
+                          className="content-photo"
+                        />
+                      ))}
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           ) : (
@@ -127,3 +117,14 @@ const Blogs = () => {
 };
 
 export default Blogs;
+
+// Dictionnaire d'icônes pour les catégories
+const categoryIcons = {
+  Écrits: <FaBook className="text-primary me-2" />,
+  Psychologie: <FaBrain className="text-danger me-2" />,
+  "Développement personnel": <FaUserGraduate className="text-success me-2" />,
+  "L'islam": <FaMosque className="text-info me-2" />,
+  Codage: <FaCode className="text-dark me-2" />,
+  Nouvelles: <FaGlobe className="text-primary me-2" />,
+  "Personnages favoris": <FaStar className="text-warning me-2" />,
+};

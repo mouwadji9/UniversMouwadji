@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  FaHome,
+  FaFeatherAlt,
+  FaStar,
+  FaBlog,
+  FaInfoCircle,
+  FaEnvelope,
+} from "react-icons/fa";
+import "./Header.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./Header.css"; // Ajouter un fichier CSS pour styles personnalisés
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav className="navbar navbar-expand-lg bg-light shadow-sm">
       <div className="container">
         {/* Logo stylisé */}
         <Link
@@ -17,10 +25,8 @@ const Header = () => {
           <span className="logo-icon" role="img" aria-label="logo">
             🌍
           </span>
-          <span className="ms-2" style={{ color: "#3498db" }}>
-            Mouwadji
-          </span>
-          <span style={{ color: "#e74c3c" }}>Univers</span>
+          <span className="ms-2 text-primary">Mouwadji</span>
+          <span className="text-danger">Univers</span>
         </Link>
 
         {/* Toggle button */}
@@ -36,34 +42,46 @@ const Header = () => {
         {/* Navbar links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Accueil
+            <li className="nav-item ms-3 me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/">
+                <FaHome className="me-1" /> Accueil
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/writings">
-                Mes Écrits
+            <li className="nav-item me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/writings">
+                <FaFeatherAlt className="me-1" /> Mes Écrits
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/characters">
-                Personnages Favoris
+            <li className="nav-item me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/characters">
+                <FaStar className="me-1" /> Personnages Favoris
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Blogs">
-                Mes Blogs
+            <li className="nav-item me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/Blogs">
+                <FaBlog className="me-1" /> Mes Blogs
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                À Propos
+            <li className="nav-item me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/about">
+                <FaInfoCircle className="me-1" /> À Propos
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contact
+            <li className="nav-item me-3">
+              {" "}
+              {/* Ajoutez me-3 ici */}
+              <Link className="nav-link custom-nav-link" to="/contact">
+                <FaEnvelope className="me-1" /> Contact
               </Link>
             </li>
           </ul>

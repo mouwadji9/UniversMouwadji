@@ -78,7 +78,10 @@ Sache que tant qu'il y aura des gens qui te haïront, il existera des gens prêt
 
 Ô missionnaire
         `,
-        photos: ["photo1.jpg", "photo2.jpg"],
+        photos: [
+          "https://th.bing.com/th/id/OIP.T7dn9GMXCeCWIv5vcu_sjAHaME?w=115&h=180&c=7&r=0&o=5&pid=1.7",
+          "https://th.bing.com/th/id/OIP.aN0wJi5kRXWJYyWIcyvUCAHaE7?w=235&h=180&c=7&r=0&o=5&pid=1.7",
+        ],
       },
     ],
   },
