@@ -1,25 +1,41 @@
 /* Header.css */
+
 .navbar-brand {
-    font-family: 'Arial', sans-serif;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar-brand:hover {
-    color: #2c3e50;
-  }
-  
-  .logo-icon {
-    font-size: 1.8rem;
-  }
-  
-  .nav-link {
-    font-weight: 500;
-    color: #2c3e50;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: #3498db;
-  }
-  
+  font-family: "Arial", sans-serif;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #2c3e50;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+}
+
+/* Style pour les éléments de navigation */
+.navbar-nav .nav-item {
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+.navbar-nav .nav-item:hover {
+  transform: scale(1.1);
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  color: #2c3e50;
+  transition: color 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent; /* Bordure transparente par défaut */
+  border-radius: 5px; /* Arrondir légèrement les coins */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #3498db;
+  text-decoration: underline;
+  border-color: #3498db; /* Couleur de la bordure au survol */
+}

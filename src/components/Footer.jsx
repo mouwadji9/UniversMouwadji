@@ -10,8 +10,8 @@ const Footer = () => {
           <div className="col-md-4 text-md-start mb-2 mb-md-0">
             <h5 className="d-flex align-items-center">
               <span className="logo-icon" role="img" aria-label="logo">🦁</span>
-              <span className="ms-2" style={{ color: '#3498db', fontWeight: 'bold' }}>Univers</span>
-              <span style={{ color: '#e74c3c', fontWeight: 'bold' }}>Mouwadji</span>
+              <span className="ms-2" style={{ color: '#3498db', fontWeight: 'bold' }}>Mouwadji</span>
+              <span style={{ color: '#e74c3c', fontWeight: 'bold' }}>Univers</span>
             </h5>
           </div>
           <div className="col-md-8">

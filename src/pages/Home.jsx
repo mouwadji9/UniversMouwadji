@@ -4,7 +4,7 @@ import publications from '../data/PublicationsData';
 const Home = () => {
   return (
     <div className="container mt-4">
-      <h1 className="border border-success border-3 rounded p-2 text-center mb-3">Bienvenue sur UniveMouwadji</h1>
+      <h1 className="border border-success border-3 rounded p-2 text-center mb-3">Bienvenue sur MouwadjiUnivers</h1>
       <div>
       <p>
         Je m'appelle Mouhamed Fall, mais mon nom de plume est Mouwadji.
