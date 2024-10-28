@@ -11,8 +11,10 @@ import {
 } from "react-icons/fa"; // Icônes des catégories
 import "./Blogs.css";
 
-const Blogs = () => {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
+  const [selectedCategory, setSelectedCategory] = useState(
+    selectedCategoryApp || categories[0]
+  );
   const [activePublication, setActivePublication] = useState(null);
 
   useEffect(() => {
@@ -22,6 +24,17 @@ const Blogs = () => {
     );
     setActivePublication(defaultPublication);
   }, [selectedCategory]);
+
+  useEffect(() => {
+    // Met à jour la catégorie sélectionnée lorsque selectedCategoryApp change
+    if (selectedCategoryApp) {
+      const category = categories.find(
+        (cat) => cat.name === selectedCategoryApp
+      );
+      setSelectedCategory(category);
+      setSelectedCategoryApp(null); // Réinitialise la sélection pour éviter les conflits
+    }
+  }, [selectedCategoryApp]);
 
   const filteredPublications = publications.filter(
     (pub) => pub.category === selectedCategory.name

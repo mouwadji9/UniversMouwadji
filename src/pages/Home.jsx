@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import publications from "../data/PublicationsData";
 
-const Home = () => {
+const Home = ({ setSelectedCategoryApp }) => {
   return (
     <div className="container mt-4">
       <h1 className="border border-success border-3 rounded p-3 text-center mb-5 bg-light shadow-sm">
@@ -45,7 +45,11 @@ const Home = () => {
                 Explorez mes réflexions écrites sur divers sujets, des
                 observations personnelles aux réflexions philosophiques.
               </p>
-              <a href="/blog/ecrits" className="btn btn-outline-primary">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("Écrits")}
+                className="btn btn-outline-primary"
+              >
                 Découvrir
               </a>
             </div>
@@ -62,7 +66,11 @@ const Home = () => {
                 Découvrez les subtilités du comportement humain et de la
                 psychologie, un domaine qui me passionne profondément.
               </p>
-              <a href="/blog/psychologie" className="btn btn-outline-danger">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("Psychologie")}
+                className="btn btn-outline-danger"
+              >
                 Découvrir
               </a>
             </div>
@@ -80,7 +88,10 @@ const Home = () => {
                 conseils pratiques pour votre croissance.
               </p>
               <a
-                href="/blog/developpement-personnel"
+                href="/blogs"
+                onClick={() =>
+                  setSelectedCategoryApp("developpement-personnel")
+                }
                 className="btn btn-outline-success"
               >
                 Découvrir
@@ -100,7 +111,11 @@ const Home = () => {
                 enseignements islamiques, ce blog offre des conseils
                 accessibles.
               </p>
-              <a href="/blog/religion" className="btn btn-outline-info">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("L'Islam")}
+                className="btn btn-outline-info"
+              >
                 Découvrir
               </a>
             </div>
@@ -117,7 +132,11 @@ const Home = () => {
                 En tant que développeur diplômé, je partage ici des astuces de
                 codage et des aperçus de mon parcours en programmation.
               </p>
-              <a href="/blog/codage" className="btn btn-outline-dark">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("Codage")}
+                className="btn btn-outline-dark"
+              >
                 Découvrir
               </a>
             </div>
@@ -134,7 +153,11 @@ const Home = () => {
                 Restez informé avec mes analyses critiques de l’actualité
                 mondiale, proposant des perspectives sur les événements majeurs.
               </p>
-              <a href="/blog/nouvelles" className="btn btn-outline-primary">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("Nouvelles")}
+                className="btn btn-outline-primary"
+              >
                 Découvrir
               </a>
             </div>
@@ -151,7 +174,11 @@ const Home = () => {
                 Découvrez les figures qui m’ont inspiré, avec leurs histoires et
                 les leçons qu’elles m’ont transmises.
               </p>
-              <a href="/blog/personnages" className="btn btn-outline-warning">
+              <a
+                href="/blogs"
+                onClick={() => setSelectedCategoryApp("Favoris")}
+                className="btn btn-outline-warning"
+              >
                 Découvrir
               </a>
             </div>
