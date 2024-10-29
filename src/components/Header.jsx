@@ -52,20 +52,6 @@ const Header = () => {
             <li className="nav-item me-3">
               {" "}
               {/* Ajoutez me-3 ici */}
-              <Link className="nav-link custom-nav-link" to="/writings">
-                <FaFeatherAlt className="me-1" /> Mes Écrits
-              </Link>
-            </li>
-            <li className="nav-item me-3">
-              {" "}
-              {/* Ajoutez me-3 ici */}
-              <Link className="nav-link custom-nav-link" to="/characters">
-                <FaStar className="me-1" /> Personnages Favoris
-              </Link>
-            </li>
-            <li className="nav-item me-3">
-              {" "}
-              {/* Ajoutez me-3 ici */}
               <Link className="nav-link custom-nav-link" to="/Blogs">
                 <FaBlog className="me-1" /> Mes Blogs
               </Link>
