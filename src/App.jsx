@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-import Writings from "./pages/Writings";
-import Characters from "./pages/Characters";
 import Blogs from "./pages/Blogs";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -20,10 +18,8 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home setSelectedCategory={setSelectedCategoryApp} />}
+          element={<Home setSelectedCategoryApp={setSelectedCategoryApp} />}
         />
-        <Route path="/writings" element={<Writings />} />
-        <Route path="/characters" element={<Characters />} />
         <Route
           path="/blogs"
           element={

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaFeatherAlt,
   FaBrain,
@@ -8,9 +9,24 @@ import {
   FaGlobe,
   FaStar,
 } from "react-icons/fa";
-import publications from "../data/PublicationsData";
+import { publications, categories } from "../data/Blogsdata";
 
 const Home = ({ setSelectedCategoryApp }) => {
+  const navigate = useNavigate();
+
+  const handleDiscoverClick = (category) => {
+    setSelectedCategoryApp(category);
+    navigate("/blogs"); // Navigate to /blogs without reloading
+  };
+
+  // Fetch one publication per category
+  const featuredPublications = categories.map((category) => {
+    const publication = publications.find((pub) =>
+      category.publications.includes(pub.id)
+    );
+    return { ...publication, category: category.name };
+  });
+
   return (
     <div className="container mt-4">
       <h1 className="border border-success border-3 rounded p-3 text-center mb-5 bg-light shadow-sm">
@@ -45,13 +61,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 Explorez mes réflexions écrites sur divers sujets, des
                 observations personnelles aux réflexions philosophiques.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("Écrits")}
+              <button
+                onClick={() => handleDiscoverClick("Écrits")}
                 className="btn btn-outline-primary"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -66,13 +81,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 Découvrez les subtilités du comportement humain et de la
                 psychologie, un domaine qui me passionne profondément.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("Psychologie")}
+              <button
+                onClick={() => handleDiscoverClick("Psychologie")}
                 className="btn btn-outline-danger"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -87,15 +101,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 Plongez dans mon parcours de développement personnel, avec des
                 conseils pratiques pour votre croissance.
               </p>
-              <a
-                href="/blogs"
-                onClick={() =>
-                  setSelectedCategoryApp("developpement-personnel")
-                }
+              <button
+                onClick={() => handleDiscoverClick("Développement Personnel")}
                 className="btn btn-outline-success"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -111,13 +122,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 enseignements islamiques, ce blog offre des conseils
                 accessibles.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("L'Islam")}
+              <button
+                onClick={() => handleDiscoverClick("L'Islam")}
                 className="btn btn-outline-info"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -132,13 +142,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 En tant que développeur diplômé, je partage ici des astuces de
                 codage et des aperçus de mon parcours en programmation.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("Codage")}
+              <button
+                onClick={() => handleDiscoverClick("Codage")}
                 className="btn btn-outline-dark"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -153,13 +162,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 Restez informé avec mes analyses critiques de l’actualité
                 mondiale, proposant des perspectives sur les événements majeurs.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("Nouvelles")}
+              <button
+                onClick={() => handleDiscoverClick("Nouvelles")}
                 className="btn btn-outline-primary"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -174,13 +182,12 @@ const Home = ({ setSelectedCategoryApp }) => {
                 Découvrez les figures qui m’ont inspiré, avec leurs histoires et
                 les leçons qu’elles m’ont transmises.
               </p>
-              <a
-                href="/blogs"
-                onClick={() => setSelectedCategoryApp("Favoris")}
+              <button
+                onClick={() => handleDiscoverClick("Personnages Favoris")}
                 className="btn btn-outline-warning"
               >
                 Découvrir
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -204,15 +211,18 @@ const Home = ({ setSelectedCategoryApp }) => {
         Dernières Publications
       </h2>
       <div className="row mt-3">
-        {publications.map((publication) => (
+        {featuredPublications.map((publication) => (
           <div className="col-md-4 mb-4" key={publication.id}>
             <div className="card shadow-sm h-100">
               <div className="card-body">
                 <h5 className="card-title">{publication.title}</h5>
                 <p className="card-text">{publication.excerpt}</p>
-                <a href={publication.link} className="btn btn-outline-primary">
+                <button
+                  onClick={() => navigate(publication.link)}
+                  className="btn btn-outline-primary"
+                >
                   Lire la suite
-                </a>
+                </button>
               </div>
             </div>
           </div>
