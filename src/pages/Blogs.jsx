@@ -8,17 +8,33 @@ import {
   FaCode,
   FaGlobe,
   FaStar,
-} from "react-icons/fa"; // Icônes des catégories
+} from "react-icons/fa";
 import "./Blogs.css";
 
-const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
+// Dictionnaire d'icônes pour les catégories
+const categoryIcons = {
+  Écrits: <FaBook className="text-primary me-2" />,
+  Psychologie: <FaBrain className="text-danger me-2" />,
+  "Développement personnel": <FaUserGraduate className="text-success me-2" />,
+  "L'islam": <FaMosque className="text-info me-2" />,
+  Codage: <FaCode className="text-dark me-2" />,
+  Nouvelles: <FaGlobe className="text-primary me-2" />,
+  "Personnages favoris": <FaStar className="text-warning me-2" />,
+};
+
+const Blogs = ({
+  selectedCategoryApp,
+  selectedPublicationApp,
+  setSelectedCategoryApp,
+  setSelectedPublicationApp,
+}) => {
   const [selectedCategory, setSelectedCategory] = useState(
     selectedCategoryApp || categories[0]
   );
   const [activePublication, setActivePublication] = useState(null);
 
   useEffect(() => {
-    // Définit la publication par défaut lors du changement de catégorie
+    // Définit la publication par défaut lorsque la catégorie change
     const defaultPublication = publications.find(
       (pub) => pub.category === selectedCategory.name
     );
@@ -26,19 +42,36 @@ const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    // Met à jour la catégorie sélectionnée lorsque selectedCategoryApp change
+    // Met à jour la catégorie et publication sélectionnées à partir des props
     if (selectedCategoryApp) {
       const category = categories.find(
         (cat) => cat.name === selectedCategoryApp
       );
-      setSelectedCategory(category);
-      setSelectedCategoryApp(null); // Réinitialise la sélection pour éviter les conflits
+      if (category) {
+        setSelectedCategory(category);
+        setSelectedCategoryApp(null);
+      }
     }
-  }, [selectedCategoryApp]);
+    if (selectedPublicationApp) {
+      const publication = publications.find(
+        (pub) => pub.id === selectedPublicationApp
+      );
+      if (publication) {
+        setActivePublication(publication);
+        setSelectedPublicationApp(null);
+      }
+    }
+  }, [
+    selectedCategoryApp,
+    selectedPublicationApp,
+    setSelectedCategoryApp,
+    setSelectedPublicationApp,
+  ]);
 
-  const filteredPublications = publications.filter(
-    (pub) => pub.category === selectedCategory.name
-  );
+  const filteredPublications =
+    selectedCategory.name === "Personnages favoris"
+      ? publications.filter((pub) => pub.role) // Filtrer pour les personnages favoris
+      : publications.filter((pub) => pub.category === selectedCategory.name);
 
   return (
     <div className="container mt-4">
@@ -71,7 +104,7 @@ const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
       <div className="row">
         {/* Colonne des titres */}
         <div className="col-md-4 shadow-sm rounded p-3 border border-primary bg-light">
-          <h3 className="text-center ">{selectedCategory.name}</h3>
+          <h3 className="text-center">{selectedCategory.name}</h3>
           <ul className="list-group list-group-flush mt-3">
             {filteredPublications.map((pub) => (
               <li
@@ -82,7 +115,8 @@ const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
                 onClick={() => setActivePublication(pub)}
                 style={{ cursor: "pointer" }}
               >
-                {pub.title}
+                {pub.title || pub.name}{" "}
+                {/* Afficher le titre ou le nom pour les personnages */}
               </li>
             ))}
           </ul>
@@ -92,7 +126,9 @@ const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
         <div className="col-md-8 shadow-sm rounded p-3 border border-dark bg-light">
           {activePublication ? (
             <div>
-              <h4 className="text-dark">{activePublication.title}</h4>
+              <h4 className="text-dark">
+                {activePublication.title || activePublication.name}
+              </h4>
               <p className="text-muted">{activePublication.excerpt}</p>
               <ul>
                 {activePublication.contentDetails.map((detail, idx) => (
@@ -130,14 +166,3 @@ const Blogs = ({ selectedCategoryApp, setSelectedCategoryApp }) => {
 };
 
 export default Blogs;
-
-// Dictionnaire d'icônes pour les catégories
-const categoryIcons = {
-  Écrits: <FaBook className="text-primary me-2" />,
-  Psychologie: <FaBrain className="text-danger me-2" />,
-  "Développement personnel": <FaUserGraduate className="text-success me-2" />,
-  "L'islam": <FaMosque className="text-info me-2" />,
-  Codage: <FaCode className="text-dark me-2" />,
-  Nouvelles: <FaGlobe className="text-primary me-2" />,
-  "Personnages favoris": <FaStar className="text-warning me-2" />,
-};

@@ -9,8 +9,8 @@ import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
-  // État pour la catégorie sélectionnée
   const [selectedCategoryApp, setSelectedCategoryApp] = useState(null);
+  const [selectedPublicationApp, setSelectedPublicationApp] = useState(null);
 
   return (
     <Router>
@@ -18,20 +18,26 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home setSelectedCategoryApp={setSelectedCategoryApp} />}
+          element={
+            <Home
+              setSelectedCategoryApp={setSelectedCategoryApp}
+              setSelectedPublicationApp={setSelectedPublicationApp}
+            />
+          }
         />
         <Route
           path="/blogs"
           element={
             <Blogs
               selectedCategoryApp={selectedCategoryApp}
+              selectedPublicationApp={selectedPublicationApp}
               setSelectedCategoryApp={setSelectedCategoryApp}
+              setSelectedPublicationApp={setSelectedPublicationApp}
             />
           }
         />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* Ajoutez d'autres routes ici */}
       </Routes>
       <Footer />
     </Router>

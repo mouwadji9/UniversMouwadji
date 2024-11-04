@@ -1,4 +1,4 @@
-// data.js
+// Blogsdata.js
 
 export const categories = [
   { id: 1, name: "Écrits", publications: [1, 7, 8, 9, 10] },
@@ -7,7 +7,7 @@ export const categories = [
   { id: 4, name: "L'islam", publications: [4, 13] },
   { id: 5, name: "Codage", publications: [5, 14] },
   { id: 6, name: "Nouvelles", publications: [6, 15] },
-  { id: 7, name: "Personnages favoris", publications: [16] },
+  { id: 7, name: "Personnages favoris", publications: [16, 17, 18] },
 ];
 
 export const publications = [
@@ -209,6 +209,60 @@ Sache que tant qu'il y aura des gens qui te haïront, il existera des gens prêt
         title: "Actualité internationale",
         section: "Focus sur les derniers événements...",
         photos: ["photo12.jpg"],
+      },
+    ],
+  },
+  {
+    id: 16,
+    name: "Alioune Sarr",
+    role: "Philosophe",
+    excerpt: "Philosophe senegalais...",
+    image:
+      "http://ts2.mm.bing.net/th?id=OIP.AJ7-iOhQDIyv0ryBXRVl3wHaFj&pid=15.1",
+    details:
+      "Alioune Sarr est un philosophe influent, connu pour ses écrits sur la moralité et l'éthique.",
+    contentDetails: [
+      {
+        title: "Biographie",
+        section: "Né au Sénégal, il a influencé la pensée moderne...",
+        photos: ["bio-photo1.jpg"],
+      },
+      {
+        title: "Philosophie et éthique",
+        section: "Sa philosophie explore la justice et la moralité...",
+        photos: ["philosophy-photo1.jpg", "philosophy-photo2.jpg"],
+      },
+    ],
+  },
+  {
+    id: 17,
+    name: "Fatou Ndiaye",
+    role: "Poète",
+    excerpt: "Poète senegalais...",
+    image: "https://via.placeholder.com/100",
+    details:
+      "Fatou Ndiaye est une poète qui explore des thèmes de la vie quotidienne avec une profondeur unique.",
+    contentDetails: [
+      {
+        title: "Œuvres majeures",
+        section: "Des poèmes inspirés de la vie quotidienne...",
+        photos: ["poetry-photo1.jpg"],
+      },
+    ],
+  },
+  {
+    id: 18,
+    name: "Cheikh Ba",
+    role: "Historien",
+    excerpt: "Historien senegalais...",
+    image: "https://via.placeholder.com/100",
+    details:
+      "Cheikh Ba est un historien dont les travaux mettent en lumière des événements méconnus du passé.",
+    contentDetails: [
+      {
+        title: "Études historiques",
+        section: "Analyse des grandes périodes de l'histoire...",
+        photos: ["history-photo1.jpg"],
       },
     ],
   },

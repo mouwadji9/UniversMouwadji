@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { publications, categories } from "../data/Blogsdata";
 
-const Home = ({ setSelectedCategoryApp }) => {
+const Home = ({ setSelectedCategoryApp, setSelectedPublicationApp }) => {
   const navigate = useNavigate();
 
   const handleDiscoverClick = (category) => {
@@ -26,6 +26,11 @@ const Home = ({ setSelectedCategoryApp }) => {
     );
     return { ...publication, category: category.name };
   });
+
+  const handlePublicationClick = (publication) => {
+    setSelectedPublicationApp(publication);
+    navigate("/blogs");
+  };
 
   return (
     <div className="container mt-4">
@@ -215,13 +220,17 @@ const Home = ({ setSelectedCategoryApp }) => {
           <div className="col-md-4 mb-4" key={publication.id}>
             <div className="card shadow-sm h-100">
               <div className="card-body">
-                <h5 className="card-title">{publication.title}</h5>
+                <h5 className="card-title">
+                  {publication.title || publication.name}
+                </h5>
                 <p className="card-text">{publication.excerpt}</p>
                 <button
-                  onClick={() => navigate(publication.link)}
+                  onClick={() => handlePublicationClick(publication)}
                   className="btn btn-outline-primary"
                 >
-                  Lire la suite
+                  {publication.category === "Personnages favoris"
+                    ? "Voir le profil"
+                    : "Lire la suite"}
                 </button>
               </div>
             </div>
